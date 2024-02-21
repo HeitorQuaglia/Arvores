@@ -11,6 +11,8 @@ private:
 	No* raiz;
 
 public:
+	int tamanho();
+
 	void inserir(int valor);
 	void imprimir_arvore();
 };

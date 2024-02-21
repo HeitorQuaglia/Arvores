@@ -49,3 +49,7 @@ void No::inserir_direita(int valor) {
         this->direito->inserir(valor);
     }
 }
+
+int No::tamanho() {
+    return 1 + (this->direito != nullptr ? this->direito->tamanho() : 0) + (this->esquerdo != nullptr ? this->esquerdo->tamanho() : 0);
+}

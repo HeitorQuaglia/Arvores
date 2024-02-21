@@ -12,6 +12,7 @@ int main()
 	arvore->inserir(35);
 
 	arvore->imprimir_arvore();
+	std::cout << arvore->tamanho();
 
 	return 0;
 }

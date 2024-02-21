@@ -15,5 +15,12 @@ void ArvB::imprimir_arvore() {
 	}
 
 	std::string resultado = this->raiz->imprimir();
-	std::cout << resultado;
+	std::cout << resultado << std::endl;
+}
+
+int ArvB::tamanho() {
+	if (this->raiz == nullptr)
+		return 0;
+
+	return this->raiz->tamanho();
 }
