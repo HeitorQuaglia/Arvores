@@ -16,6 +16,7 @@ public:
 	No(int valor);
 	~No();
 
+	bool busca(int valor);
 	int tamanho();
 	void inserir(int valor);
 	std::string imprimir();

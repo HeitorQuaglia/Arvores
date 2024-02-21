@@ -12,7 +12,12 @@ int main()
 	arvore->inserir(35);
 
 	arvore->imprimir_arvore();
-	std::cout << arvore->tamanho();
+
+	std::cout << arvore->tamanho() << std::endl;
+
+	std::cout << arvore->busca(75) << std::endl;
+
+	std::cout << arvore->busca(105) << std::endl;
 
 	return 0;
 }

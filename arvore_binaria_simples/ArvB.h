@@ -12,6 +12,7 @@ private:
 
 public:
 	int tamanho();
+	bool busca(int valor);
 
 	void inserir(int valor);
 	void imprimir_arvore();

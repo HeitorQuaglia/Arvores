@@ -24,3 +24,10 @@ int ArvB::tamanho() {
 
 	return this->raiz->tamanho();
 }
+
+bool ArvB::busca(int valor) {
+	if (this->raiz == nullptr) 
+		return false;
+
+	return this->raiz->busca(valor);
+}

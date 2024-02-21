@@ -53,3 +53,16 @@ void No::inserir_direita(int valor) {
 int No::tamanho() {
     return 1 + (this->direito != nullptr ? this->direito->tamanho() : 0) + (this->esquerdo != nullptr ? this->esquerdo->tamanho() : 0);
 }
+
+bool No::busca(int valor) {
+    if (this->conteudo == valor)
+        return true;
+    else if (this->esquerdo != nullptr && valor < this->conteudo) {
+        return this->esquerdo->busca(valor);
+    }
+    else if (this->direito != nullptr) {
+        return this->direito->busca(valor);
+    }
+
+    return false;
+}
