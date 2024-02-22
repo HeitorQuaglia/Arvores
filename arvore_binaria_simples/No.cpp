@@ -1,67 +1,53 @@
 #include "No.h"
 
-No::No(int valor) {
-    conteudo = valor;
-    esquerdo = nullptr;
-    direito = nullptr;
-}
+No::No(int valor) : conteudo(valor), esquerdo(nullptr), direito(nullptr) {}
 
-No::~No() {
-}
+std::string No::imprimir() const {
+    std::string valores = std::to_string(conteudo);
 
-std::string No::imprimir() {
-    std::string valores = std::to_string(this->conteudo);
-
-    if (this->esquerdo != nullptr) {
-        valores += " E (" + this->esquerdo->imprimir() + ")";
+    if (esquerdo) {
+        valores += " E (" + esquerdo->imprimir() + ")";
     }
 
-    if (this->direito != nullptr) {
-        valores += " D (" + this->direito->imprimir() + ")";
+    if (direito) {
+        valores += " D (" + direito->imprimir() + ")";
     }
 
     return valores;
 }
 
 void No::inserir(int valor) {
-    if (this->conteudo > valor) {
-        this->inserir_esquerda(valor);
+    if (conteudo > valor) {
+        if (!esquerdo) {
+            esquerdo = std::make_unique<No>(valor);
+        }
+        else {
+            esquerdo->inserir(valor);
+        }
     }
     else {
-        this->inserir_direita(valor);
+        if (!direito) {
+            direito = std::make_unique<No>(valor);
+        }
+        else {
+            direito->inserir(valor);
+        }
     }
 }
 
-void No::inserir_esquerda(int valor) {
-    if (this->esquerdo == nullptr) {
-        this->esquerdo = new No(valor);
-    }
-    else {
-        this->esquerdo->inserir(valor);
-    }
+int No::tamanho() const {
+    return 1 + (direito ? direito->tamanho() : 0) + (esquerdo ? esquerdo->tamanho() : 0);
 }
 
-void No::inserir_direita(int valor) {
-    if (this->direito == nullptr) {
-        this->direito = new No(valor);
-    }
-    else {
-        this->direito->inserir(valor);
-    }
-}
-
-int No::tamanho() {
-    return 1 + (this->direito != nullptr ? this->direito->tamanho() : 0) + (this->esquerdo != nullptr ? this->esquerdo->tamanho() : 0);
-}
-
-bool No::busca(int valor) {
-    if (this->conteudo == valor)
+bool No::busca(int valor) const {
+    if (conteudo == valor) {
         return true;
-    else if (this->esquerdo != nullptr && valor < this->conteudo) {
-        return this->esquerdo->busca(valor);
     }
-    else if (this->direito != nullptr) {
-        return this->direito->busca(valor);
+    else if (valor < conteudo && esquerdo) {
+        return esquerdo->busca(valor);
+    }
+    else if (direito) {
+        return direito->busca(valor);
     }
 
     return false;

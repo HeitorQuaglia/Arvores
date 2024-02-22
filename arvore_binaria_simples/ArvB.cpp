@@ -1,33 +1,24 @@
 #include "ArvB.h"
 
-
 void ArvB::inserir(int valor) {
-	if (this->raiz == nullptr) {
-		this->raiz = new No(valor);
-	} else {
-		this->raiz->inserir(valor);
-	}
+    if (!raiz) {
+        raiz = std::make_unique<No>(valor);
+    }
+    else {
+        raiz->inserir(valor);
+    }
 }
 
-void ArvB::imprimir_arvore() {
-	if (this->raiz == nullptr) {
-		return;
-	}
-
-	std::string resultado = this->raiz->imprimir();
-	std::cout << resultado << std::endl;
+void ArvB::imprimir_arvore() const {
+    if (raiz) {
+        std::cout << raiz->imprimir() << std::endl;
+    }
 }
 
-int ArvB::tamanho() {
-	if (this->raiz == nullptr)
-		return 0;
-
-	return this->raiz->tamanho();
+int ArvB::tamanho() const {
+    return raiz ? raiz->tamanho() : 0;
 }
 
-bool ArvB::busca(int valor) {
-	if (this->raiz == nullptr) 
-		return false;
-
-	return this->raiz->busca(valor);
+bool ArvB::busca(int valor) const {
+    return raiz ? raiz->busca(valor) : false;
 }

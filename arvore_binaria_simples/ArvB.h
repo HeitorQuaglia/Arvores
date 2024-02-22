@@ -1,19 +1,20 @@
-#include "No.h"
 #ifndef ARVB_H
 #define ARVB_H
-#endif
 
-#include "iostream"
+#include "No.h"
+#include <memory> // Para std::unique_ptr
+#include <iostream>
 
 class ArvB {
-
 private:
-	No* raiz;
+    std::unique_ptr<No> raiz; // Usando smart pointer para gerenciar a memória
 
 public:
-	int tamanho();
-	bool busca(int valor);
+    int tamanho() const; // Função const para indicar que não altera membros da classe
+    bool busca(int valor) const;
 
-	void inserir(int valor);
-	void imprimir_arvore();
+    void inserir(int valor);
+    void imprimir_arvore() const;
 };
+
+#endif

@@ -1,23 +1,23 @@
 #ifndef NO_H
 #define NO_H
-#endif
 
+#include <memory> // Para std::unique_ptr
 #include <string>
 
 class No {
 private:
-	int conteudo;
-	No* esquerdo;
-	No* direito;
-	void inserir_esquerda(int valor);
-	void inserir_direita(int valor);
+    int conteudo;
+    std::unique_ptr<No> esquerdo;
+    std::unique_ptr<No> direito;
 
 public:
-	No(int valor);
-	~No();
+    No(int valor);
+    ~No() = default; // O destrutor padrão é suficiente
 
-	bool busca(int valor);
-	int tamanho();
-	void inserir(int valor);
-	std::string imprimir();
+    bool busca(int valor) const;
+    int tamanho() const;
+    void inserir(int valor);
+    std::string imprimir() const;
 };
+
+#endif
